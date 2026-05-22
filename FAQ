@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Find Games – FAQ</title>
+<style>
+:root{
+  --bg:#0f1115;
+  --card:#1a1d24;
+  --card2:#20242d;
+  --text:#e6e6e6;
+  --muted:#b0b3c0;
+  --radius:16px;
+  --line:rgba(255,255,255,0.06);
+  --accent1:#00cc66;
+  --accent2:#00ff88;
+}
+body{
+  margin:0;
+  padding:24px;
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  line-height:1.6;
+}
+.container{
+  max-width:820px;
+  margin:0 auto;
+}
+h1{
+  font-size:2rem;
+  margin-bottom:8px;
+}
+.subtitle{
+  color:var(--muted);
+  margin-bottom:28px;
+}
+.accordion{
+  display:grid;
+  gap:14px;
+}
+details.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);
+  overflow:hidden;
+  position:relative;
+}
+details.card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  height:100%;
+  width:3px;
+  background:linear-gradient(180deg,var(--accent1),var(--accent2));
+}
+summary{
+  list-style:none;
+  cursor:pointer;
+  padding:18px 20px 18px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+summary::-webkit-details-marker{
+  display:none;
+}
+.summary-title{
+  font-weight:600;
+}
+.chevron{
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--card2);
+  color:var(--muted);
+  transition:transform .2s;
+}
+details[open] .chevron{
+  transform:rotate(180deg);
+  color:var(--text);
+}
+.content{
+  padding:0 22px 20px 24px;
+  color:var(--muted);
+}
+.content strong{
+  color:var(--text);
+}
+ul{
+  padding-left:18px;
+}
+li{
+  margin-bottom:8px;
+}
+@media(max-width:600px){
+  body{padding:18px;}
+  h1{font-size:1.7rem;}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Frequently Asked Questions</h1>
+  <p class="subtitle">Quick answers to the most common questions about AI Find Games.</p>
+
+  <div class="accordion">
+
+    <!-- GENERAL -->
+    <details class="card" open>
+      <summary>
+        <div class="summary-title">What is AI Find Games?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>AI Find Games is an app that finds your next game based on your personal gamer profile, mood, and preferences. The more you use it, the better it knows what you like.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div class="summary-title">How does the matching work?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>When you set up your gamer profile, you tell the app your favorite genres, platforms, games you love, and your current mood. Our matching engine then scores thousands of games against your profile and surfaces the best picks for you.</p>
+        <p>Each pick shows a <strong>match score</strong> and a reason — so you always know why a game was recommended.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div class="summary-title">Is AI Find Games free?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>Yes. AI Find Games is free to download and use. A <strong>Free</strong> plan gives you access to game picks, Best Rated sections, filters, and more.</p>
+        <p><strong>PRO</strong> unlocks unlimited picks, no ads, and advanced features like Recommendation Focus.</p>
+      </div>
+    </details>
+
+    <!-- PRO -->
+    <details class="card">
+      <summary>
+        <div class="summary-title">What's included in PRO?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>PRO includes:</p>
+        <ul>
+          <li><strong>Unlimited picks</strong> — no daily limits</li>
+          <li><strong>No ads</strong></li>
+          <li><strong>Recommendation Focus</strong> — Comfort Zone, Balanced, or Explorer</li>
+          <li>Early access to upcoming PRO features</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div class="summary-title">How do subscriptions work?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>All subscriptions are managed securely by Google Play. Payments, renewals, and cancellations are handled directly through your Google account.</p>
+        <p>PRO is available as a <strong>monthly</strong> or <strong>yearly</strong> plan.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div class="summary-title">Can I cancel my subscription?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>Yes. You can cancel anytime via Google Play. Your PRO plan remains active until the end of the current billing period.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div class="summary-title">My PRO subscription isn't activating — what do I do?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>If your PRO subscription isn't showing after purchase, try the following:</p>
+        <ul>
+          <li>Close and reopen the app — it syncs automatically on launch</li>
+          <li>Make sure your Google Play payment was confirmed</li>
+          <li>If the issue persists, go to <strong>Settings → Send Feedback</strong> and select <strong>Billing / subscription</strong></li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- PICKS & PROFILE -->
+    <details class="card">
+      <summary>
+        <div class="summary-title">Why are my picks always the same?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>If your picks feel repetitive, try:</p>
+        <ul>
+          <li>Changing your <strong>Mood</strong> — tap the emoji icon in the top bar</li>
+          <li>Updating your gamer profile with new favorites</li>
+          <li>Going to <strong>Settings → Reset recommendations</strong> to start fresh</li>
+          <li>Upgrading to PRO to unlock <strong>Recommendation Focus → Explorer</strong> for more variety</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div class="summary-title">Why don't I see games for my platform?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>Make sure your platform is selected in your gamer profile. Also note that some categories like <strong>Trending</strong> or <strong>New Releases</strong> only show modern platforms — retro consoles are hidden there since no new games are released for them.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div class="summary-title">How do I update my gamer profile?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>Tap the <strong>AI Find Games</strong> button in the top bar, then select <strong>Edit Profile</strong>. You can update your genres, platforms, favorite games, and preferences at any time.</p>
+      </div>
+    </details>
+
+    <!-- DATA -->
+    <details class="card">
+      <summary>
+        <div class="summary-title">What data does AI Find Games collect?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>AI Find Games collects minimal data:</p>
+        <ul>
+          <li><strong>Gamer profile</strong> — stored locally on your device only</li>
+          <li><strong>Advertising data</strong> — via Google AdMob (approximate location, device ID, interactions) for Free plan users</li>
+          <li><strong>Crash reports and diagnostics</strong> — to improve stability</li>
+        </ul>
+        <p>We do not sell your data. See our <a href="privacy.html" style="color:var(--accent2)">Privacy Policy</a> for full details.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div class="summary-title">Does AI Find Games sell my data?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>No. AI Find Games does not sell your personal data to any third party.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div class="summary-title">How do I delete my data?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>Your gamer profile is stored locally on your device. To delete it, go to <strong>Settings → Reset recommendations</strong>, or uninstall the app.</p>
+        <p>For any data deletion request, contact us at <strong>lmtechstudio.contact@gmail.com</strong>.</p>
+      </div>
+    </details>
+
+    <!-- SUPPORT -->
+    <details class="card">
+      <summary>
+        <div class="summary-title">The app crashed or doesn't open — what do I do?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>Try the following:</p>
+        <ul>
+          <li>Force close and reopen the app</li>
+          <li>Go to <strong>Settings → Clear cache</strong> inside the app</li>
+          <li>Make sure you have the latest version from Google Play</li>
+          <li>If the issue persists, contact us via <strong>Settings → Send Feedback → Report a bug</strong></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div class="summary-title">How can I report a bug or send feedback?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>Go to <strong>Settings → Send Feedback</strong>. Select the type of request (bug, feature, question, or billing) and your message will be sent by email with a clear subject for faster handling.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div class="summary-title">Who is AI Find Games for?</div>
+        <span class="chevron">⌄</span>
+      </summary>
+      <div class="content">
+        <p>Anyone who plays games and has ever spent too long trying to decide what to play next. Whether you're into retro classics, the latest releases, or hidden indie gems — AI Find Games finds what fits you.</p>
+      </div>
+    </details>
+
+  </div>
+</div>
+</body>
+</html>
