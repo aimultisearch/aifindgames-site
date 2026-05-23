@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>OG Image Generator — AI Find Games</title>
+<style>
+  body { margin: 0; background: #111; display: flex; flex-direction: column; align-items: center; padding: 32px; font-family: system-ui; color: white; }
+  h2 { margin-bottom: 16px; }
+  canvas { border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); max-width: 100%; }
+  button {
+    margin-top: 20px;
+    padding: 14px 28px;
+    background: #20ff82;
+    color: #020b06;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  button:hover { filter: brightness(0.9); }
+  p { color: #9ac7a6; font-size: 14px; margin-top: 12px; }
+</style>
+</head>
+<body>
+
+<h2>OG Image Preview — AI Find Games</h2>
+<canvas id="og" width="1200" height="630"></canvas>
+<button onclick="download()">⬇ Download og-image.png</button>
+<p>Upload this file to your GitHub repo as <strong>og-image.png</strong></p>
+
+<script>
+const canvas = document.getElementById('og');
+const ctx = canvas.getContext('2d');
+const W = 1200, H = 630;
+
+function draw() {
+  // Background
+  ctx.fillStyle = '#020b06';
+  ctx.fillRect(0, 0, W, H);
+
+  // Green radial glow top-left
+  const g1 = ctx.createRadialGradient(200, 150, 0, 200, 150, 500);
+  g1.addColorStop(0, 'rgba(32,255,130,0.18)');
+  g1.addColorStop(1, 'transparent');
+  ctx.fillStyle = g1;
+  ctx.fillRect(0, 0, W, H);
+
+  // Green radial glow bottom-right
+  const g2 = ctx.createRadialGradient(1000, 500, 0, 1000, 500, 400);
+  g2.addColorStop(0, 'rgba(32,255,130,0.10)');
+  g2.addColorStop(1, 'transparent');
+  ctx.fillStyle = g2;
+  ctx.fillRect(0, 0, W, H);
+
+  // Load icon
+  const icon = new Image();
+  icon.onload = function() {
+    // Icon — left side, centered vertically
+    const iconSize = 220;
+    const iconX = 160;
+    const iconY = (H - iconSize) / 2;
+
+    // Icon background circle (subtle)
+    ctx.beginPath();
+    ctx.arc(iconX + iconSize/2, iconY + iconSize/2, iconSize/2 + 20, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(32,255,130,0.06)';
+    ctx.fill();
+
+    ctx.drawImage(icon, iconX, iconY, iconSize, iconSize);
+
+    // Vertical separator line
+    ctx.strokeStyle = 'rgba(32,255,130,0.25)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(460, 120);
+    ctx.lineTo(460, 510);
+    ctx.stroke();
+
+    // App name
+    ctx.fillStyle = '#eaffef';
+    ctx.font = '900 82px system-ui, -apple-system, sans-serif';
+    ctx.letterSpacing = '-3px';
+    ctx.fillText('AI Find Games', 520, 290);
+
+    // Tagline
+    ctx.fillStyle = '#9ac7a6';
+    ctx.font = '400 34px system-ui, -apple-system, sans-serif';
+    ctx.fillText('Find your next favorite game.', 522, 360);
+
+    // Green dot + "Available on Android"
+    ctx.beginPath();
+    ctx.arc(524, 418, 8, 0, Math.PI * 2);
+    ctx.fillStyle = '#20ff82';
+    ctx.fill();
+
+    ctx.fillStyle = 'rgba(154,199,166,0.85)';
+    ctx.font = '400 26px system-ui, -apple-system, sans-serif';
+    ctx.fillText('Available on Android  ·  aifindgames.com', 548, 428);
+
+    // Bottom border accent
+    const grad = ctx.createLinearGradient(0, H-3, W, H-3);
+    grad.addColorStop(0, 'transparent');
+    grad.addColorStop(0.3, '#20ff82');
+    grad.addColorStop(0.7, '#20ff82');
+    grad.addColorStop(1, 'transparent');
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(0, H-2);
+    ctx.lineTo(W, H-2);
+    ctx.stroke();
+  };
+
+  icon.onerror = function() {
+    // Fallback si l'icône ne charge pas
+    drawTextOnly();
+  };
+
+  // Charge l'icône uploadée
+  icon.src = 'icon-aifindgames.png';
+}
+
+function drawTextOnly() {
+  ctx.fillStyle = '#eaffef';
+  ctx.font = '900 82px system-ui, sans-serif';
+  ctx.fillText('AI Find Games', 120, 320);
+
+  ctx.fillStyle = '#9ac7a6';
+  ctx.font = '400 34px system-ui, sans-serif';
+  ctx.fillText('Find your next favorite game.', 120, 390);
+}
+
+function download() {
+  const link = document.createElement('a');
+  link.download = 'og-image.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+draw();
+</script>
+</body>
+</html>
