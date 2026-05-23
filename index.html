@@ -1,682 +1,194 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>AI Find Games</title>
-  <meta name="description" content="Find your next favorite game with personalized recommendations based on your gamer profile, mood, platforms and play style." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LM Tech Studio</title>
+  <link rel="icon" type="image/png" href="lm-tech-logo.png" />
+  <link rel="apple-touch-icon" href="lm-tech-logo.png" />
+  <meta name="description" content="Building intelligent apps that simplify complexity and create clarity." />
 
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <!-- Open Graph / LinkedIn / Facebook / WhatsApp -->
+  <meta property="og:title" content="LM Tech Studio" />
+  <meta property="og:description" content="Building intelligent apps that simplify complexity and create clarity." />
+  <meta property="og:image" content="https://www.lmtechstudio.com/og-image.png" />
+  <meta property="og:url" content="https://www.lmtechstudio.com" />
+  <meta property="og:type" content="website" />
 
-  <style>
-    :root{
-      --bg:#020b06;
-      --bg2:#06170d;
-      --card:#07160d;
-      --card2:#0b2013;
-      --text:#eaffef;
-      --muted:#9ac7a6;
-      --soft:#d7ffe0;
-      --border:rgba(43,255,134,.22);
-      --green:#20ff82;
-      --green2:#56d063;
-      --yellow:#ffd84d;
-      --shadow:rgba(0,255,116,.18);
+  <!-- Twitter/X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LM Tech Studio" />
+  <meta name="twitter:description" content="Building intelligent apps that simplify complexity and create clarity." />
+  <meta name="twitter:image" content="https://www.lmtechstudio.com/og-image.png" />
 
-      --max:1100px;
-      --gap:48px;
-      --phone-max-w:410px;
-    }
-
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(850px 520px at 18% 8%, rgba(32,255,130,.20), transparent 58%),
-        radial-gradient(700px 460px at 85% 18%, rgba(76,255,156,.12), transparent 60%),
-        radial-gradient(900px 560px at 50% 95%, rgba(24,120,70,.18), transparent 65%),
-        linear-gradient(180deg, #020b06 0%, #041109 50%, #020b06 100%);
-      overflow-x:hidden;
-    }
-
-    body:before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:.18;
-      background-image:
-        radial-gradient(circle at 20% 30%, rgba(32,255,130,.85) 0 1px, transparent 1.6px),
-        radial-gradient(circle at 70% 20%, rgba(255,255,255,.75) 0 1px, transparent 1.4px),
-        radial-gradient(circle at 45% 70%, rgba(32,255,130,.55) 0 1px, transparent 1.6px);
-      background-size:120px 120px, 180px 180px, 220px 220px;
-    }
-
-    .page{ padding:32px 18px 56px; position:relative; }
-
-    .hero-card,
-    .screens,
-    .features,
-    .plans{
-      max-width:var(--max);
-      margin:0 auto;
-      background:linear-gradient(180deg, rgba(7,22,13,.96), rgba(3,12,7,.96));
-      border-radius:28px;
-      box-shadow:0 24px 80px rgba(0,0,0,.42), 0 0 60px rgba(32,255,130,.07);
-      border:1px solid var(--border);
-      padding:34px;
-    }
-
-    .hero{
-      display:grid;
-      grid-template-columns:minmax(280px,1fr) minmax(320px,1fr);
-      align-items:center;
-      gap:var(--gap);
-    }
-
-    @media (max-width:920px){
-      .hero-card{ padding:28px 20px; }
-      .hero{ grid-template-columns:1fr; gap:28px; }
-    }
-
-    .left{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-
-    .phone-wrap{
-      width:min(100%, var(--phone-max-w));
-      aspect-ratio:390/820;
-      border-radius:42px;
-      padding:12px;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,.22), rgba(255,255,255,.04)),
-        #0a0d0b;
-      box-shadow:
-        0 22px 52px rgba(0,0,0,.55),
-        0 0 42px rgba(32,255,130,.14);
-      border:1px solid rgba(255,255,255,.18);
-      position:relative;
-    }
-
-    .phone-screen{
-      width:100%;
-      height:100%;
-      overflow:hidden;
-      border-radius:32px;
-      background:#031008;
-      border:1px solid rgba(32,255,130,.18);
-    }
-
-    .phone-screen img,
-    .phone-screen video{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
-    .hero-logo{
-      width:min(340px, 82vw);
-      height:auto;
-      display:block;
-      margin:0 0 18px;
-      filter:drop-shadow(0 0 22px rgba(32,255,130,.18));
-    }
-
-    .right h1{
-      margin:0 0 12px;
-      font-size:clamp(38px,4.6vw,62px);
-      line-height:1.02;
-      letter-spacing:-0.04em;
-    }
-
-    .right .subline{
-      margin:0 0 16px;
-      font-size:18px;
-      line-height:1.55;
-      color:var(--muted);
-      font-weight:400;
-    }
-
-    .right p{
-      margin:0 0 14px;
-      font-size:18px;
-      line-height:1.55;
-      color:var(--muted);
-    }
-
-    .strong{ font-weight:900; color:var(--text); }
-
-    .bullets{
-      margin:16px 0 0;
-      padding:0;
-      list-style:none;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      color:var(--muted);
-      font-size:16px;
-      line-height:1.55;
-    }
-
-    .bullets li{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-    }
-
-    .dot{
-      width:10px;
-      height:10px;
-      margin-top:7px;
-      border-radius:999px;
-      background:var(--green);
-      box-shadow:0 0 14px rgba(32,255,130,.55);
-      flex:0 0 auto;
-    }
-
-    .section-title{
-      margin:24px 0 10px;
-      font-size:18px;
-      font-weight:950;
-      color:var(--text);
-    }
-
-    .eyebrow{
-      margin:22px 0 6px;
-      font-size:13px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color:rgba(154,199,166,.92);
-      font-weight:900;
-    }
-
-    ul{
-      margin:8px 0 0 18px;
-      padding:0;
-      color:var(--muted);
-      line-height:1.7;
-      font-size:16px;
-    }
-
-    .cta{
-      margin-top:18px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      align-items:flex-start;
-    }
-
-    .cta-primary{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:14px 18px;
-      border-radius:15px;
-      background:var(--green);
-      color:#031008;
-      text-decoration:none;
-      font-weight:950;
-      letter-spacing:-0.01em;
-      box-shadow:0 16px 36px rgba(32,255,130,.24);
-      border:1px solid rgba(255,255,255,.22);
-    }
-
-    .cta-primary:hover{ filter:brightness(.96); }
-
-    .cta-meta{
-      font-size:14px;
-      color:rgba(154,199,166,.92);
-    }
-
-    .badges{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      align-items:flex-start;
-      margin-top:6px;
-    }
-
-    .badge{
-      padding:10px 14px;
-      border-radius:12px;
-      border:1px solid rgba(32,255,130,.24);
-      background:rgba(255,255,255,.96);
-      box-shadow:0 10px 26px rgba(0,0,0,.26);
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-    }
-
-    .badge img{ height:42px; display:block; }
-
-    .screens,
-    .features,
-    .plans{
-      margin-top:18px;
-      padding:26px;
-    }
-
-    .screens h2,
-    .features h2,
-    .plans h2{
-      margin:0 0 6px;
-      font-size:24px;
-      letter-spacing:-0.02em;
-    }
-
-    .screens p,
-    .features p,
-    .plans p{
-      margin:0 0 16px;
-      color:var(--muted);
-      line-height:1.55;
-      font-size:16px;
-    }
-
-    .feature-graphic{
-      overflow:hidden;
-      border-radius:22px;
-      border:1px solid var(--border);
-      margin-bottom:18px;
-      background:#020b06;
-      box-shadow:0 18px 42px rgba(0,0,0,.30);
-    }
-
-    .feature-graphic img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-
-    .shots-grid{
-      display:grid;
-      grid-template-columns:repeat(5, 1fr);
-      gap:16px;
-    }
-
-    @media (max-width:1100px){
-      .shots-grid{ grid-template-columns:repeat(3, 1fr); }
-    }
-
-    @media (max-width:760px){
-      .shots-grid{ grid-template-columns:repeat(2, 1fr); }
-    }
-
-    @media (max-width:520px){
-      .shots-grid{ grid-template-columns:1fr; }
-    }
-
-    .shot{
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid rgba(32,255,130,.16);
-      background:#020b06;
-      box-shadow:0 14px 34px rgba(0,0,0,.28);
-    }
-
-    .shot img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-
-    .features-grid,
-    .plans-grid{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:14px;
-      margin-top:16px;
-    }
-
-    .feature-card,
-    .plan-card{
-      border:1px solid rgba(32,255,130,.18);
-      border-radius:18px;
-      padding:18px;
-      background:linear-gradient(180deg, rgba(11,32,19,.96), rgba(5,17,10,.96));
-      box-shadow:0 12px 28px rgba(0,0,0,.22);
-    }
-
-    .feature-card h3,
-    .plan-card h3{
-      margin:0 0 8px;
-      font-size:18px;
-      letter-spacing:-0.01em;
-    }
-
-    .feature-card p{
-      margin:0;
-      font-size:15px;
-    }
-
-    .plan-tagline{
-      margin:0 0 12px;
-      color:var(--soft);
-      font-weight:900;
-      line-height:1.35;
-    }
-
-    .plan-card ul{
-      margin:0;
-      padding:0;
-      list-style:none;
-      display:flex;
-      flex-direction:column;
-      gap:7px;
-      font-size:15px;
-      line-height:1.45;
-    }
-
-    .plan-card li{ color:var(--muted); }
-
-    .footnote,
-    .plans-note{
-      margin-top:12px;
-      font-size:13px;
-      line-height:1.5;
-      color:rgba(154,199,166,.86);
-    }
-
-    @media (max-width:760px){
-      .features-grid,
-      .plans-grid{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width:520px){
-      .page{ padding:18px 12px 42px; }
-      .hero-card,
-      .screens,
-      .features,
-      .plans{ border-radius:22px; padding:18px; }
-      .right h1{ font-size:clamp(36px,10vw,46px); }
-      .right .subline,
-      .right p{ font-size:16px; }
-      .phone-wrap{ width:min(100%, 340px); }
-      .cta{ align-items:stretch; }
-      .cta-primary{ width:100%; }
-      .badge{ width:100%; }
-      .badge img{ height:40px; }
-    }
-
-    footer{
-      max-width:var(--max);
-      margin:18px auto 0;
-      text-align:center;
-      font-size:14px;
-      color:rgba(154,199,166,.82);
-    }
-
-    footer a{
-      color:var(--green);
-      text-decoration:underline;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&display=swap" rel="stylesheet" />
 </head>
-
 <body>
-  <main class="page">
-    <section class="hero-card">
-      <div class="hero">
 
-        <!-- LEFT -->
-        <div class="left">
-          <div class="phone-wrap" aria-label="AI Find Games app preview">
-            <div class="phone-screen">
-              <video
-                id="demoVideo"
-                autoplay
-                muted
-                loop
-                playsinline
-                webkit-playsinline
-                preload="auto"
-                poster="screenshot-1.jpg"
-              >
-                <source src="demo.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
+  <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+  <header class="hero">
+    <div class="brand">
+      <img src="lm-tech-logo.png" alt="LM Tech Studio logo" class="brand-logo" />
+      <h1 class="brand-title">LM Tech Studio</h1>
+    </div>
+    <p class="hero-slogan">Building intelligent apps<br/>that simplify complexity and create clarity.</p>
+  </header>
+
+  <!-- ── ABOUT ─────────────────────────────────────────────────────────────── -->
+  <section class="about">
+    <p class="about-text">
+      LM Tech Studio was founded in 2025 by a developer who started heavily using AI tools — and quickly realized that nothing out there truly solved what he was looking for.<br /><br />
+      So he built it himself.<br /><br />
+      AI Multi Search and AI Find Games were born from real frustrations, real needs, and a demand he kept seeing that nobody was properly addressing.<br /><br />
+      One goal:<br />
+      keep building intelligent apps that solve problems that still don't have great solutions.<br /><br />
+      Léo Muller
+    </p>
+  </section>
+
+  <main>
+
+    <!-- ── APPS ───────────────────────────────────────────────────────────── -->
+    <section class="apps">
+      <h2>Apps</h2>
+      <div class="app-grid">
+
+        <!-- AI Multi Search -->
+        <a class="app-card blue" href="https://aimultisearch.com/" target="_blank" rel="noopener noreferrer">
+          <div class="card-image">
+            <img src="ai-multi-search.png" alt="AI Multi Search" />
           </div>
-        </div>
-
-        <!-- RIGHT -->
-        <div class="right">
-          <img class="hero-logo" src="logo.png" alt="AI Find Games" />
-          <h1>Find your next favorite game.</h1>
-          <div class="subline">
-            Personalized game recommendations based on your gamer profile, favorite genres, platforms, mood, and play style.
+          <div class="card-content">
+            <h3>AI Multi Search</h3>
+            <p>Ask once. Compare answers from multiple AI models.</p>
+            <span class="badge" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://play.google.com/store/apps/details?id=com.lmtechstudio.aimultisearch', '_blank')">
+              Available on Android
+            </span>
           </div>
+        </a>
 
-          <p>
-            Your profile + AI matching = <span class="strong">perfect picks</span>. Discover games that actually fit what you want to play next.
-          </p>
-
-          <ul class="bullets">
-            <li><span class="dot"></span><span>Personalized picks based on your gamer profile</span></li>
-            <li><span class="dot"></span><span>Match percentages with clear reasons</span></li>
-            <li><span class="dot"></span><span>Find trending, top rated, new, retro, and hidden gems</span></li>
-          </ul>
-
-          <div class="eyebrow">Built for game discovery</div>
-          <div class="section-title">Why AI Find Games?</div>
-          <ul>
-            <li><b>🎯 Know why a game fits</b><br>See match scores and reasons like genre, platform, mood, and playstyle.</li>
-            <li><b>✨ Picked for you</b><br>Get recommendations based on what you actually like.</li>
-            <li><b>🕹️ Search smarter</b><br>Explore games across platforms, genres, ratings, and prices.</li>
-            <li><b>📚 Build your library</b><br>Save games to Wishlist, Played, Playing Now, or No thx.</li>
-          </ul>
-
-          <div class="section-title">How it works</div>
-          <ul>
-            <li>Create your gamer profile</li>
-            <li>Choose your platforms, genres, mood, and play style</li>
-            <li>Get personalized picks with match scores</li>
-            <li>Open a game to see why it matches you</li>
-          </ul>
-
-          <div class="section-title">What you can discover</div>
-          <ul>
-            <li>Best rated games</li>
-            <li>Trending games</li>
-            <li>New releases and upcoming games</li>
-            <li>Retro recommendations</li>
-            <li>Steam, GOG, YouTube, and Twitch links when available</li>
-          </ul>
-
-          <div class="cta">
-            <a class="cta-primary"
-              href="https://play.google.com/store/apps/details?id=com.aifindgames.app"
-              target="_blank" rel="noopener"
-              aria-label="Download AI Find Games on Google Play">
-              Download AI Find Games
-            </a>
-
-            <div class="cta-meta">Free download • Personalized game recommendations</div>
-
-            <div class="badges">
-              <a class="badge"
-                href="https://play.google.com/store/apps/details?id=com.aifindgames.app"
-                target="_blank" rel="noopener"
-                aria-label="Get it on Google Play">
-                <img src="android-badge.png" alt="Google Play" />
-              </a>
-            </div>
-
-            <div class="cta-meta">iOS coming later</div>
+        <!-- AI Find Games -->
+        <a class="app-card green" href="https://aifindgames.com/" target="_blank" rel="noopener noreferrer">
+          <div class="card-image">
+            <img src="ai-find-games.png" alt="AI Find Games" />
           </div>
+          <div class="card-content">
+            <h3>AI Find Games</h3>
+            <p>Find your next game based on your profile, mood and preferences.</p>
+            <span class="badge" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://play.google.com/store/apps/details?id=com.aifindgames.app', '_blank')">
+              Available on Android
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ── NEWS ──────────────────────────────────────────────────────────── -->
+    <section class="updates">
+      <h2>News</h2>
+      <div class="update-list">
+
+        <div class="update-item clickable" id="news-pro" onclick="openModal()">
+          <div class="update-icon-wrap">
+            <img src="icon-aifindgames.png" alt="AI Find Games icon" class="update-icon icon-findgames" />
+          </div>
+          <p><strong>AI Find Games</strong> — Coming soon · Perfect Match AI · Gamer DNA · Hidden Gems For You</p>
+          <span class="news-arrow">›</span>
+        </div>
+
+        <div class="update-item">
+          <div class="update-icon-wrap">
+            <img src="icon-aifindgames.png" alt="AI Find Games icon" class="update-icon icon-findgames" />
+          </div>
+          <p><strong>AI Find Games</strong> — v1.0.3 · Stability fix</p>
+        </div>
+
+        <div class="update-item">
+          <div class="update-icon-wrap">
+            <img src="icon-aifindgames.png" alt="AI Find Games icon" class="update-icon icon-findgames" />
+          </div>
+          <p><strong>AI Find Games</strong> — Now available on Google Play</p>
+        </div>
+
+        <div class="update-item">
+          <div class="update-icon-wrap">
+            <img src="icon-aimultisearch.png" alt="AI Multi Search icon" class="update-icon icon-multisearch" />
+          </div>
+          <p><strong>AI Multi Search</strong> — Coming soon · Grok &amp; Camera Search</p>
+        </div>
+
+        <div class="update-item">
+          <div class="update-icon-wrap">
+            <img src="icon-aimultisearch.png" alt="AI Multi Search icon" class="update-icon icon-multisearch" />
+          </div>
+          <p><strong>AI Multi Search</strong> — Mistral integrated</p>
+        </div>
+
+        <div class="update-item">
+          <div class="update-icon-wrap">
+            <img src="icon-aimultisearch.png" alt="AI Multi Search icon" class="update-icon icon-multisearch" />
+          </div>
+          <p><strong>AI Multi Search</strong> — Insight feature released</p>
         </div>
 
       </div>
     </section>
 
-    <!-- ===== Feature graphic ===== -->
-    <section class="screens" aria-label="Feature graphic">
-      <h2>Your profile + AI matching = perfect picks</h2>
-      <p>AI Find Games helps you decide what to play next without endless scrolling.</p>
-
-      <div class="feature-graphic">
-        <img src="feature-graphic.png" alt="AI Find Games feature graphic" />
-      </div>
-
-      <div class="footnote">
-        *Game availability, prices, ratings, and links may vary by platform, country, and data source.
-      </div>
-    </section>
-
-    <!-- ===== Features ===== -->
-    <section class="features" aria-label="Features">
-      <h2>Made for players who want better recommendations</h2>
-      <p>Not just another game list — a matching system built around your taste.</p>
-
-      <div class="features-grid">
-        <div class="feature-card">
-          <h3>🎯 Match score</h3>
-          <p>Every recommendation can show a compatibility percentage and simple reasons behind the match.</p>
-        </div>
-
-        <div class="feature-card">
-          <h3>🧠 Gamer profile</h3>
-          <p>Tell the app your platforms, favorite genres, mood, difficulty, budget, and play style.</p>
-        </div>
-
-        <div class="feature-card">
-          <h3>🔥 Smarter discovery</h3>
-          <p>Explore trending, top rated, new releases, upcoming games, retro picks, and personalized results.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Screenshots section ===== -->
-    <section class="screens" aria-label="Screenshots">
-      <h2>See AI Find Games in action</h2>
-      <p>Personalized picks. Match reasons. Game details. Library actions.</p>
-
-      <div class="shots-grid">
-        <div class="shot">
-          <img src="screenshot-1.jpg" alt="AI Find Games screenshot 1" />
-        </div>
-
-        <div class="shot">
-          <img src="screenshot-2.jpg" alt="AI Find Games screenshot 2" />
-        </div>
-
-        <div class="shot">
-          <img src="screenshot-3.jpg" alt="AI Find Games screenshot 3" />
-        </div>
-
-        <div class="shot">
-          <img src="screenshot-4.jpg" alt="AI Find Games screenshot 4" />
-        </div>
-
-        <div class="shot">
-          <img src="screenshot-5.jpg" alt="AI Find Games screenshot 5" />
-        </div>
-      </div>
-
-      <div class="footnote">
-        *Screenshots are examples. Content and recommendations can vary based on your profile and available data.
-      </div>
-    </section>
-
-    <!-- ===== Plans section ===== -->
-    <section class="plans" aria-label="Plans">
-      <h2>Start free. Unlock more when you want more picks.</h2>
-      <p>AI Find Games is designed to work for casual discovery, with more power available for regular players.</p>
-
-      <div class="plans-grid">
-        <div class="plan-card">
-          <h3>Free</h3>
-          <div class="plan-tagline">Discover what to play</div>
-          <ul>
-            <li>Personalized picks</li>
-            <li>Game search and browsing</li>
-            <li>Wishlist and library actions</li>
-          </ul>
-        </div>
-
-        <div class="plan-card">
-          <h3>Pro</h3>
-          <div class="plan-tagline">More picks, no ads</div>
-          <ul>
-            <li>More daily recommendations</li>
-            <li>Unlimited refresh</li>
-            <li>Recommendation Focus modes</li>
-          </ul>
-        </div>
-
-        <div class="plan-card">
-          <h3>Coming next</h3>
-          <div class="plan-tagline">More discovery power</div>
-          <ul>
-            <li>Smarter AI recommendations</li>
-            <li>More sources and filters</li>
-            <li>Continuous improvements</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="plans-note">
-        Plans are shown in the app. Prices may vary by country and platform.
-      </div>
-    </section>
-
-    <footer>
-  © 2026 AI Find Games ·
-  <a href="faq.html">FAQ</a> ·
-  <a href="legal.html">Terms &amp; Privacy</a><br>
-  Developed by LM Tech Studio
-</footer>
   </main>
 
-  <script>
-    (function () {
-      function tryPlay(video) {
-        if (!video) return;
+  <!-- ── FOOTER ────────────────────────────────────────────────────────────── -->
+  <footer>
+    <p>© 2026 LM Tech Studio · 
+      <a href="legal.html">Legal</a> · 
+      <a href="mailto:lmtechstudio.contact@gmail.com">Contact</a>
+    </p>
+  </footer>
 
-        video.muted = true;
-        video.playsInline = true;
+  <!-- ── MODAL PRO FEATURES ─────────────────────────────────────────────────── -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-header">
+        <span class="modal-tag">✨ Coming soon to PRO</span>
+        <h3 class="modal-title">AI Find Games — Next PRO Features</h3>
+      </div>
+      <div class="modal-body">
 
-        try { video.load(); } catch (_) {}
+        <div class="modal-feature">
+          <div class="modal-feature-icon">🎯</div>
+          <div>
+            <h4>Perfect Match AI</h4>
+            <p>Your personal AI game analyst. Get a detailed explanation of exactly why a game matches your profile — not just a score, but real insights.</p>
+          </div>
+        </div>
 
-        const p = video.play();
-        if (p && typeof p.catch === "function") {
-          p.catch(function () {});
-        }
-      }
+        <div class="modal-feature">
+          <div class="modal-feature-icon">📊</div>
+          <div>
+            <h4>Gamer DNA</h4>
+            <p>Discover your gamer identity through a visual profile based on your taste, platforms and play style. Unique, personal — and shareable.</p>
+          </div>
+        </div>
 
-      document.addEventListener("DOMContentLoaded", function () {
-        const v = document.getElementById("demoVideo");
-        tryPlay(v);
+        <div class="modal-feature">
+          <div class="modal-feature-icon">🗺️</div>
+          <div>
+            <h4>Hidden Gems For You</h4>
+            <p>Undiscovered games hand-picked for your exact taste. Not popular picks — hidden treasures you'd never find on your own.</p>
+          </div>
+        </div>
 
-        if (v) {
-          v.addEventListener("canplay", function () { tryPlay(v); }, { once: true });
-        }
+      </div>
+      <a class="modal-cta" href="https://play.google.com/store/apps/details?id=com.aifindgames.app" target="_blank" rel="noopener noreferrer">
+        Get AI Find Games →
+      </a>
+    </div>
+  </div>
 
-        document.addEventListener("visibilitychange", function () {
-          if (!document.hidden) tryPlay(v);
-        });
-
-        const kickstart = function () {
-          tryPlay(v);
-          window.removeEventListener("pointerdown", kickstart);
-          window.removeEventListener("touchstart", kickstart);
-          window.removeEventListener("keydown", kickstart);
-        };
-        window.addEventListener("pointerdown", kickstart, { once: true });
-        window.addEventListener("touchstart", kickstart, { once: true });
-        window.addEventListener("keydown", kickstart, { once: true });
-      });
-    })();
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
